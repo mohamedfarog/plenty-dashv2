@@ -7,7 +7,7 @@
 }
 
 .authentication-bg{
-    background-image: url("../images/authentication-bg.jpg");
+    background-image: url("../plenty/bg.png");
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -61,3 +61,16 @@
     z-index: 9;
 }
 
+
+.login-logo-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.plenty-logo{
+    width: 124px;
+    display: flex;
+    align-items: center;
+}
