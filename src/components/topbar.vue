@@ -588,4 +588,7 @@ h5, h6{
  a{
    color:#fff !important;
  }
+ .dropdown-item:hover{
+   background-color:#000 !important;
+ }
 </style>
