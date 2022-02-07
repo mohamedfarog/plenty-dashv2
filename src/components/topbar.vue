@@ -426,7 +426,7 @@ export default {
           <div class="p-3">
             <div class="row align-items-center">
               <div class="col">
-                <h6 class="m-0">{{ $t('navbar.dropdown.notification.text')}}</h6>
+                <h6 class="m-0" style="color:#fff">{{ $t('navbar.dropdown.notification.text')}}</h6>
               </div>
               <div class="col-auto">
                 <a href="#!" class="small">{{ $t('navbar.dropdown.notification.subtext')}}</a>
@@ -443,7 +443,7 @@ export default {
                 </div>
                 <div class="media-body">
                   <h6 class="mt-0 mb-1">{{ $t('navbar.dropdown.notification.order.title')}}</h6>
-                  <div class="font-size-12 text-muted">
+                  <div class="font-size-12">
                     <p class="mb-1">{{ $t('navbar.dropdown.notification.order.text')}}</p>
                     <p class="mb-0">
                       <i class="mdi mdi-clock-outline"></i>
@@ -462,7 +462,7 @@ export default {
                 />
                 <div class="media-body">
                   <h6 class="mt-0 mb-1">{{ $t('navbar.dropdown.notification.james.title')}}</h6>
-                  <div class="font-size-12 text-muted">
+                  <div class="font-size-12">
                     <p class="mb-1">{{ $t('navbar.dropdown.notification.james.text')}}</p>
                     <p class="mb-0">
                       <i class="mdi mdi-clock-outline"></i>
@@ -481,7 +481,7 @@ export default {
                 </div>
                 <div class="media-body">
                   <h6 class="mt-0 mb-1">{{ $t('navbar.dropdown.notification.item.title')}}</h6>
-                  <div class="font-size-12 text-muted">
+                  <div class="font-size-12">
                     <p class="mb-1">{{ $t('navbar.dropdown.notification.item.text')}}</p>
                     <p class="mb-0">
                       <i class="mdi mdi-clock-outline"></i>
@@ -500,7 +500,7 @@ export default {
                 />
                 <div class="media-body">
                   <h6 class="mt-0 mb-1">{{ $t('navbar.dropdown.notification.salena.title')}}</h6>
-                  <div class="font-size-12 text-muted">
+                  <div class="font-size-12">
                     <p class="mb-1">{{ $t('navbar.dropdown.notification.salena.text')}}</p>
                     <p class="mb-0">
                       <i class="mdi mdi-clock-outline"></i>
@@ -511,7 +511,7 @@ export default {
               </div>
             </a>
           </simplebar>
-          <div class="p-2 border-top">
+          <div class="p-2">
             <a
               class="btn btn-sm btn-link font-size-14 btn-block text-center"
               href="javascript:void(0)"
@@ -531,10 +531,10 @@ export default {
           <template v-slot:button-content>
             <img
               class="rounded-circle header-profile-user"
-              src="@/assets/images/users/avatar-4.jpg"
+              src="@/assets/plenty/admin.png"
               alt="Header Avatar"
             />
-            <span class="d-none d-xl-inline-block ml-1">{{ $t('navbar.dropdown.kevin.text')}}</span>
+            <span class="d-none d-xl-inline-block ml-1">Admin</span>
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
           </template>
           <!-- item-->
@@ -582,4 +582,10 @@ export default {
 .logo-lg img{
   margin-top:-10px;
 }
+h5, h6{
+  color:gray;
+}
+ a{
+   color:#fff !important;
+ }
 </style>

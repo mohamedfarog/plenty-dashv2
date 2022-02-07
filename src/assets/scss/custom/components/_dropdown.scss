@@ -3,13 +3,14 @@
 // 
 
 .dropdown-menu {
-  box-shadow: $box-shadow-lg;
+
   animation-name: DropDownSlide;
   animation-duration: .3s;
   animation-fill-mode: both;
   margin: 0;
   position: absolute;
   z-index: 1000;
+  background-color:#051c64;
 
   &.show {
     top: 100%!important;

@@ -34,7 +34,7 @@ export default {
       title: "Dashboard",
       items: [
         {
-          text: "Nazox"
+          text: "Plenty"
         },
         {
           text: "Dashboard",
