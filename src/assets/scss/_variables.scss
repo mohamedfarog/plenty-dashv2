@@ -11,13 +11,13 @@ $sidebar-menu-sub-item-color: #7c8a96;
 $sidebar-menu-item-icon-color: #505d69;
 $sidebar-menu-item-hover-color: #383c40;
 $sidebar-menu-item-active-color: #5664d2;
-$sidebar-width:  240px;
+$sidebar-width:  212px;
 $sidebar-collapsed-width:  70px;
 $sidebar-width-sm:  160px;
 
 // Vertical Sidebar - Dark
-$sidebar-dark-bg: #252b3b; //252b3b
-$sidebar-dark-menu-item-color: #8590a5;
+$sidebar-dark-bg: #001b71; //252b3b
+$sidebar-dark-menu-item-color: #ffffff;
 $sidebar-dark-menu-sub-item-color: #8590a5;
 $sidebar-dark-menu-item-icon-color: #8590a5;
 $sidebar-dark-menu-item-hover-color: #d7e4ec;
@@ -29,7 +29,7 @@ $header-bg: #ffffff;
 $header-item-color: #636e75;
 
 // Topbar - Dark
-$header-dark-bg: #252b3b;
+$header-dark-bg: #001b71;
 $header-dark-item-color: #e9ecef;
 
 // Topbar Search
@@ -54,7 +54,7 @@ $display-none: none;
 $display-block: block;
 
 // Brand 
-$navbar-brand-box-width: 240px;
+$navbar-brand-box-width: 212px;
 
 // Boxed layout width
 $boxed-layout-width:    1300px;
@@ -107,9 +107,9 @@ $grays: map-merge(
   $grays
 );
 
-$blue:    #061A93;
+$blue:    #001b71;
 $indigo:  #564ab1;
-$purple:  #061A93;
+$purple:  #001b71;
 $pink:    #e83e8c;
 $red:     #ff3d60;
 $orange:  #f1734f;
@@ -312,9 +312,9 @@ $border-radius-sm:            .2rem;
 
 $rounded-pill:                50rem;
 
-$box-shadow-sm:               0 1px 1px rgba($black,.05);
-$box-shadow:                  0 2px 4px rgba($black,.08);
-$box-shadow-lg:               0 5px 12px rgba($black, 0.1);
+$box-shadow-sm:               0 0px 0px rgba($black,.05);
+$box-shadow:                  0 0px 0px rgba($black,.08);
+$box-shadow-lg:               0 0px 0px rgba($black, 0.1);
 
 
 $component-active-bg:         $primary;
