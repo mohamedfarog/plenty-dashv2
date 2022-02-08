@@ -3,7 +3,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
-          2022 © Plentyofthings.com
+          {{ footer_text}}
+         
         </div>
         <div class="col-sm-6">
           <div class="text-sm-right d-none d-sm-block">
@@ -14,3 +15,16 @@
     </div>
   </footer>
 </template>
+<script>
+import {version} from '../../package'
+export default{
+  data() {
+    return{
+      footer_text:''
+    }
+  },
+  created(){
+    this.footer_text = `2022 © Plentyofthings.com - v${version}`
+  }
+}
+</script>
