@@ -91,8 +91,8 @@ export default {
             <div class="authentication-bg">
               <div class="login-logo-wrapper">
                 <img
-                  class="plenty-logo"
-                  src="@/assets/plenty/logo.png"
+                  class="mawj-logo"
+                  src="@/assets/mawj/login-bg.png"
                   alt=""
                   srcset=""
                 />
@@ -113,6 +113,10 @@ export default {
                 <div class="row justify-content-center">
                   <div class="col-lg-9">
                     <div class="login-form">
+                      <div class="mb-4 text-center">
+                        <img class="mowj-login-logo" src="@/assets/mawj/Logo.png" alt="" srcset="">
+                      </div>
+                     
                       <b-alert
                         variant="danger"
                         class=""
@@ -123,8 +127,7 @@ export default {
                       >
 
                       <div class="p-1">
-                        <h4 class="font-size-18">Dashboard</h4>
-                        <p class="text-muted">Please Sign in to continue</p>
+                        <p class="text-muted text-center">Please Sign in to <strong> Dashboard</strong>  </p>
                         <form
                           class="form-horizontal"
                           @submit.prevent="tryToLogIn"
@@ -193,7 +196,7 @@ export default {
                           </div>
                         </form>
                         <p class="mt-4 text-center">
-                          © 2022 Plentyofthings.com
+                          © 2022 MVP-APPS.AE
                         </p>
                       </div>
                     </div>

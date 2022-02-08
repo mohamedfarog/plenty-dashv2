@@ -7,10 +7,7 @@
 }
 
 .authentication-bg{
-    background-image: url("../plenty/bg.png");
     height: 100vh;
-    background-size: cover;
-    background-position: center;
     .bg-overlay{
         background-color: #292626;
     }
@@ -69,8 +66,12 @@
     height: 100%;
     width: 100%;
 }
-.plenty-logo{
-    width: 124px;
+.mawj-logo{
+    width: 100%;
     display: flex;
     align-items: center;
+}
+
+.mowj-login-logo{
+    width: 180px;
 }
