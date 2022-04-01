@@ -34,15 +34,15 @@ export default {
       title: "Dashboard",
       items: [
         {
-          text: "Plenty"
+          text: "Plenty",
         },
         {
           text: "Dashboard",
-          active: true
-        }
-      ]
+          active: true,
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 
@@ -53,10 +53,6 @@ export default {
       <div class="col-xl-8">
         <Stat />
         <RevenueAnalytics />
-      </div>
-      <div class="col-xl-4">
-        <SalesAnalytics />
-        <EarningReport />
       </div>
     </div>
     <!-- <div class="row">

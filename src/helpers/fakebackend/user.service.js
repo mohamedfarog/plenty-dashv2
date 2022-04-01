@@ -45,12 +45,14 @@ function getAll() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
+        
     };
     return fetch(`/users`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
     return response.text().then(text => {
+        console.log("this is being called")
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 401) {

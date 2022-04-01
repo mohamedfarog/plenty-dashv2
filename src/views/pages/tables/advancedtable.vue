@@ -2,16 +2,12 @@
 import Layout from "../../layouts/main";
 import PageHeader from "@/components/page-header";
 import appConfig from "@/app.config";
-
 import { tableData } from "./dataAdvancedtable";
 
-/**
- * Advanced table component
- */
 export default {
   page: {
     title: "Advanced Table",
-    meta: [{ name: "description", content: appConfig.description }]
+    meta: [{ name: "description", content: appConfig.description }],
   },
   components: { Layout, PageHeader },
   data() {
@@ -21,12 +17,12 @@ export default {
       items: [
         {
           text: "Tables",
-          href: "/"
+          href: "/",
         },
         {
           text: "Advanced",
-          active: true
-        }
+          active: true,
+        },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -42,8 +38,8 @@ export default {
         { key: "office", sortable: true },
         { key: "age", sortable: true },
         { key: "date", sortable: true },
-        { key: "salary", sortable: true }
-      ]
+        { key: "salary", sortable: true },
+      ],
     };
   },
   computed: {
@@ -52,7 +48,7 @@ export default {
      */
     rows() {
       return this.tableData.length;
-    }
+    },
   },
   mounted() {
     // Set the initial number of items
@@ -66,8 +62,8 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -85,13 +81,21 @@ export default {
                 <div id="tickets-table_length" class="dataTables_length">
                   <label class="d-inline-flex align-items-center">
                     Show&nbsp;
-                    <b-form-select v-model="perPage" size="sm" :options="pageOptions"></b-form-select>&nbsp;entries
+                    <b-form-select
+                      v-model="perPage"
+                      size="sm"
+                      :options="pageOptions"
+                    ></b-form-select
+                    >&nbsp;entries
                   </label>
                 </div>
               </div>
               <!-- Search -->
               <div class="col-sm-12 col-md-6">
-                <div id="tickets-table_filter" class="dataTables_filter text-md-right">
+                <div
+                  id="tickets-table_filter"
+                  class="dataTables_filter text-md-right"
+                >
                   <label class="d-inline-flex align-items-center">
                     Search:
                     <b-form-input
@@ -103,8 +107,8 @@ export default {
                   </label>
                 </div>
               </div>
-              <!-- End search -->
             </div>
+
             <!-- Table -->
             <div class="table-responsive mb-0">
               <b-table
@@ -122,10 +126,16 @@ export default {
             </div>
             <div class="row">
               <div class="col">
-                <div class="dataTables_paginate paging_simple_numbers float-right">
+                <div
+                  class="dataTables_paginate paging_simple_numbers float-right"
+                >
                   <ul class="pagination pagination-rounded mb-0">
                     <!-- pagination -->
-                    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage"></b-pagination>
+                    <b-pagination
+                      v-model="currentPage"
+                      :total-rows="rows"
+                      :per-page="perPage"
+                    ></b-pagination>
                   </ul>
                 </div>
               </div>

@@ -1,15 +1,21 @@
 export const menuItems = [
     {
-        id: 2,
+        id: 1,
         label: 'menuitems.dashboard.text',
         icon: 'ri-dashboard-line',
         link: '/'
     },
     {
-        id: 3,
+        id: 2,
         label: 'menuitems.calendar.text',
         icon: 'ri-calendar-2-line',
         link: '/calendar'
+    },
+    {
+        id: 3,
+        label: 'menuitems.users.text',
+        icon: 'fa fa-users',
+        link: '/users'
     },
     {
         id: 4,
@@ -17,6 +23,7 @@ export const menuItems = [
         icon: 'ri-chat-1-line',
         link: '/chat'
     },
+
     {
         id: 5,
         label: 'menuitems.ecommerce.text',
@@ -61,7 +68,7 @@ export const menuItems = [
                 id: 13,
                 label: 'menuitems.ecommerce.list.addproduct',
                 link: '/ecommerce/add-product'
-            }
+            },  
         ]
     },
     {
@@ -405,5 +412,19 @@ export const menuItems = [
                 link: '/maps/leaflet'
             }
         ]
-    }
+    },
+
+    {
+        id: 82,
+        label: 'Designer',
+        subItems: [
+            {
+                id: 83,
+                label: 'menuitems.designers.list.designers',
+                link: '/designers/designers'
+            },
+          
+        ]
+
+    },
 ]

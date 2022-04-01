@@ -176,151 +176,161 @@ export const menuItems = [
                         id: 35,
                         label: 'menuitems.ecommerce.list.shops',
                         link: '/ecommerce/shops'
-                    },
-                    {
-                        id: 36,
-                        label: 'menuitems.ecommerce.list.addproduct',
-                        link: '/ecommerce/add-product'
-                    }
+                    }       
+                 
                 ]
             },
             {
                 id: 37,
+                label: 'menuitems.designers.text',
+                subItems: [
+                    {
+                        id: 38,
+                        label: 'menuitems.designers.list.designers',
+                        link: '/designers/designers'
+                    },
+                    {
+                        id: 39,
+                        label: 'menuitems.designers.list.add',
+                        link: '/designers/add'
+                    },
+                ]
+
+            },
+            
+            {
+                id: 40,
                 label: 'menuitems.kanban.text',
                 link: '/apps/kanban-board'
             }
         ]
     },
     {
-        id: 37,
+        id: 41,
         label: 'menuitems.components.text',
         icon: 'ri-stack-line',
         subItems: [
             {
-                id: 38,
+                id: 42,
                 label: 'menuitems.forms.text',
                 subItems: [
                     {
-                        id: 39,
+                        id: 43,
                         label: 'menuitems.forms.list.elements',
                         link: '/form/elements'
                     },
                     {
-                        id: 40,
+                        id: 44,
                         label: 'menuitems.forms.list.validation',
                         link: '/form/validation'
                     },
                     {
-                        id: 41,
+                        id: 45,
                         label: 'menuitems.forms.list.advanced',
                         link: '/form/advanced'
                     },
                     {
-                        id: 42,
+                        id: 46,
                         label: 'menuitems.forms.list.editor',
                         link: '/form/editor'
                     },
                     {
-                        id: 43,
+                        id: 47,
                         label: 'menuitems.forms.list.fileupload',
                         link: '/form/uploads'
                     },
                     {
-                        id: 44,
+                        id: 48,
                         label: 'menuitems.forms.list.wizard',
                         link: '/form/wizard'
                     },
                     {
-                        id: 45,
+                        id: 49,
                         label: 'menuitems.forms.list.mask',
                         link: '/form/mask'
                     }
                 ]
             },
             {
-                id: 46,
+                id: 50,
                 label: 'menuitems.tables.text',
                 subItems: [
                     {
-                        id: 47,
+                        id: 51,
                         label: 'menuitems.tables.list.basic',
                         link: '/tables/basic'
                     },
                     {
-                        id: 48,
+                        id: 52,
                         label: 'menuitems.tables.list.advanced',
                         link: '/tables/advanced'
                     },
-                    // {
-                    //     id: 49,
-                    //     label: 'Responsive Table',
-                    //     link: ''
-                    // }
+                  
                 ]
             },
             {
-                id: 50,
+                id: 53,
                 label: 'menuitems.charts.text',
                 subItems: [
                     {
-                        id: 51,
+                        id: 54,
                         label: 'menuitems.charts.list.apex',
                         link: '/charts/apex'
                     },
                     {
-                        id: 52,
+                        id: 55,
                         label: 'menuitems.charts.list.chartjs',
                         link: '/charts/chartjs'
                     },
                     {
-                        id: 52,
+                        id: 56,
                         label: 'menuitems.charts.list.chartist',
                         link: '/charts/chartist'
                     },
                     {
-                        id: 52,
+                        id: 57,
                         label: 'menuitems.charts.list.echart',
                         link: '/charts/chartist'
                     },
                 ]
             },
             {
-                id: 53,
+                id: 58,
                 label: 'menuitems.icons.text',
                 subItems: [
                     {
-                        id: 54,
+                        id: 59,
                         label: 'menuitems.icons.list.remix',
                         link: '/icons/remix'
                     },
                     {
-                        id: 55,
+                        id: 60,
                         label: 'menuitems.icons.list.materialdesign',
                         link: '/icons/material-design'
                     },
                     {
-                        id: 56,
+                        id: 61,
                         label: 'menuitems.icons.list.dripicons',
                         link: '/icons/dripicons'
                     },
                     {
-                        id: 57,
+                        id: 62,
                         label: 'menuitems.icons.list.fontawesome',
                         link: '/icons/font-awesome'
                     }
                 ]
             },
             {
-                id: 58,
+                id: 63,
                 label: 'menuitems.maps.text',
                 subItems: [
                     {
-                        id: 59,
+                        id: 64,
                         label: 'menuitems.maps.list.googlemap',
                         link: '/maps/google'
                     },
                     {
-                        id: 60,
+                        id: 65,
                         label: 'menuitems.maps.list.leaflet',
                         link: '/maps/leaflet'
                     }
@@ -329,77 +339,77 @@ export const menuItems = [
         ]
     },
     {
-        id: 61,
+        id: 66,
         label: 'menuitems.pages.text',
         icon: 'ri-file-copy-2-line',
         subItems: [
             {
-                id: 62,
+                id: 67,
                 label: 'menuitems.authentication.text',
                 subItems: [
                     {
-                        id: 63,
+                        id: 68,
                         label: 'menuitems.authentication.list.login',
                         link: '/auth/login-1'
                     },
                     {
-                        id: 64,
+                        id: 69,
                         label: 'menuitems.authentication.list.register',
                         link: '/auth/register-1'
                     },
                     {
-                        id: 65,
+                        id: 70,
                         label: 'menuitems.authentication.list.recoverpwd',
                         link: '/auth/recoverpwd-1'
                     },
                     {
-                        id: 66,
+                        id: 71,
                         label: 'menuitems.authentication.list.lockscreen',
                         link: '/auth/lock-screen-1'
                     },
                 ]
             },
             {
-                id: 67,
+                id: 72,
                 label: 'menuitems.utility.text',
                 subItems: [
                     {
-                        id: 68,
+                        id: 73,
                         label: 'menuitems.utility.list.starter',
                         link: '/pages/starter'
                     },
                     {
-                        id: 69,
+                        id: 74,
                         label: 'menuitems.utility.list.maintenance',
                         link: '/pages/maintenance'
                     },
                     {
-                        id: 70,
+                        id: 75,
                         label: 'menuitems.utility.list.comingsoon',
                         link: '/pages/coming-soon'
                     },
                     {
-                        id: 71,
+                        id: 76,
                         label: 'menuitems.utility.list.timeline',
                         link: '/pages/timeline'
                     },
                     {
-                        id: 72,
+                        id: 77,
                         label: 'menuitems.utility.list.faqs',
                         link: '/pages/faqs'
                     },
                     {
-                        id: 73,
+                        id: 78,
                         label: 'menuitems.utility.list.pricing',
                         link: '/pages/pricing'
                     },
                     {
-                        id: 74,
+                        id: 79,
                         label: 'menuitems.utility.list.error404',
                         link: '/pages/error-404'
                     },
                     {
-                        id: 75,
+                        id: 80,
                         label: 'menuitems.utility.list.error500',
                         link: '/pages/error-500'
                     }

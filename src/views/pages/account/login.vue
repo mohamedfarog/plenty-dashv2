@@ -1,20 +1,19 @@
 <script>
 import { required, email } from "vuelidate/lib/validators";
-
-import {
-  authMethods,
-  authFackMethods,
-  notificationMethods,
-} from "@/state/helpers";
+import { authMethods, notificationMethods } from "@/state/helpers";
 
 export default {
   data() {
     return {
-      email: "admin@themesdesign.in",
-      password: "123456",
+      email: "mohamed@dg.com",
+      password: "moh1234",
+      currentLoggedId: "",
       submitted: false,
+      authenticating: false,
+      showPassword: false,
     };
   },
+
   computed: {
     notification() {
       return this.$store ? this.$store.state.notification : null;
@@ -27,56 +26,49 @@ export default {
     email: { required, email },
     password: { required },
   },
+
   methods: {
     ...authMethods,
-    ...authFackMethods,
     ...notificationMethods,
     // Try to log the user in with the username
     // and password they provided.
     tryToLogIn() {
       this.submitted = true;
-      // stop here if form is invalid
-      this.$v.$touch();
+      //stop here if form is invalid
 
+      this.$v.$touch();
       if (this.$v.$invalid) {
         return;
       } else {
-        if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
-          this.tryingToLogIn = true;
-          // Reset the authError if it existed.
-          this.authError = null;
-          return (
-            this.logIn({
-              email: this.email,
-              password: this.password,
-            })
-              // eslint-disable-next-line no-unused-vars
-              .then((token) => {
-                this.tryingToLogIn = false;
-                this.isAuthError = false;
-                // Redirect to the originally requested page, or to the home page
+        const { email, password } = this;
+        if (email && password) {
+          this.authenticating = true;
+          this.logIn({ email, password })
+            .then((res) => {
+              localStorage.setItem("user", JSON.stringify(res.user));
+              localStorage.setItem("token", res.success.token);
+
+              if (res.success.token != null) {
                 this.$router.push(
                   this.$route.query.redirectFrom || { name: "home" }
                 );
-              })
-              .catch((error) => {
-                this.tryingToLogIn = false;
-                this.authError = error ? error : "";
-                this.isAuthError = true;
-              })
-          );
-        } else {
-          const { email, password } = this;
-          if (email && password) {
-            this.login({ email, password });
-          }
+              } else {
+                console.log("Not Authenticated");
+                this.error(res.message);
+              }
+            })
+            .catch((err) => {
+              this.error = err ? err : "";
+            })
+            .finally(() => {
+              this.authenticating = false;
+            });
         }
       }
     },
   },
 };
 </script>
-
 <template>
   <div>
     <div class="home-btn d-none d-sm-block">
@@ -92,13 +84,14 @@ export default {
               <div class="login-logo-wrapper">
                 <img
                   class="mawj-logo"
-                  src="@/assets/mawj/login-bg.png"
+                  src="@/assets/plenty/mainLogo.jpeg"
                   alt=""
                   srcset=""
                 />
               </div>
             </div>
           </div>
+
           <div class="col-lg-6">
             <div
               class="
@@ -114,9 +107,14 @@ export default {
                   <div class="col-lg-9">
                     <div class="login-form">
                       <div class="mb-4 text-center">
-                        <img class="mowj-login-logo" src="@/assets/mawj/Logo.png" alt="" srcset="">
+                        <img
+                          class="mowj-login-logo"
+                          src="@/assets/plenty/admin.png"
+                          alt=""
+                          srcset=""
+                        />
                       </div>
-                     
+
                       <b-alert
                         variant="danger"
                         class=""
@@ -127,7 +125,9 @@ export default {
                       >
 
                       <div class="p-1">
-                        <p class="text-muted text-center">Please Sign in to <strong> Dashboard</strong>  </p>
+                        <p class="text-muted text-center">
+                          Please Sign in to <strong> continue</strong>
+                        </p>
                         <form
                           class="form-horizontal"
                           @submit.prevent="tryToLogIn"
@@ -195,9 +195,7 @@ export default {
                             </button>
                           </div>
                         </form>
-                        <p class="mt-4 text-center">
-                          © 2022 MVP-APPS.AE
-                        </p>
+                        <p class="mt-4 text-center">© 2022 MVP-APPS.AE</p>
                       </div>
                     </div>
                   </div>
@@ -216,7 +214,7 @@ export default {
   max-width: 380px !important;
   margin: auto;
 }
-.login-btn{
+.login-btn {
   width: 100%;
   border-radius: 18px;
 }

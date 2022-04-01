@@ -1,25 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
-import BootstrapVue from 'bootstrap-vue'
+import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
 import Vuelidate from 'vuelidate'
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueMask from 'v-mask'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueYoutube from 'vue-youtube'
-
 import vco from "v-click-outside"
-
 import router from './router'
 import store from '@/state/store'
 import i18n from './i18n'
-
+import VueFormulate from '@braid/vue-formulate'
+import "@/assets/scss/vueformulate.scss"
 import "@/assets/scss/app.scss";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import { initFirebaseBackend } from './helpers/firebase/authUtils';
-
 import { configureFakeBackend } from './helpers/fakebackend/fake-backend';
-
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_APIKEY,
   authDomain: process.env.VUE_APP_AUTHDOMAIN,
@@ -38,12 +36,15 @@ if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
 }
 
 Vue.config.productionTip = false
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.use(VueYoutube)
 Vue.use(BootstrapVue)
 Vue.use(vco)
+Vue.use(BootstrapVueIcons)
 Vue.use(Vuelidate)
 Vue.use(VueSweetalert2);
 Vue.use(VueMask)
+Vue.use(VueFormulate)
 Vue.use(require('vue-chartist'))
 Vue.use(VueGoogleMaps, {
   load: {

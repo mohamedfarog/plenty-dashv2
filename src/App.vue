@@ -6,7 +6,6 @@
 
 <script>
 import appConfig from "@/app.config";
-
 export default {
   name: "app",
   page: {
@@ -14,7 +13,7 @@ export default {
     titleTemplate(title) {
       title = typeof title === "function" ? title(this.$store) : title;
       return title ? `${title} | ${appConfig.title}` : appConfig.title;
-    }
-  }
+    },
+  },
 };
 </script>

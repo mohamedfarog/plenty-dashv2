@@ -1,13 +1,27 @@
 import { getFirebaseBackend } from '../../helpers/firebase/authUtils'
+import { adminSignIn } from "@/services/api/auth"
+import { setItem, getItem, removeItem } from "@/utils/localStorage"
+
 
 export const state = {
-    currentUser: sessionStorage.getItem('authUser'),
+    user: getItem('user'),
+    token: getItem('token'),
+
+
 }
 
 export const mutations = {
     SET_CURRENT_USER(state, newValue) {
-        state.currentUser = newValue
-        saveState('auth.currentUser', newValue)
+        state.user = newValue.user
+        state.token = newValue.token
+        setItem('user', newValue.user)
+        setItem('token', newValue.token)
+    },
+    DELETE_CURRENT_USER(state) {
+        state.user = null
+        state.token = null
+        removeItem('user')
+        removeItem('token')
     },
 }
 
@@ -26,31 +40,45 @@ export const actions = {
         dispatch('validate')
     },
 
-    // Logs in the current user.
-    logIn({ commit, dispatch, getters }, { email, password } = {}) {
-        if (getters.loggedIn) return dispatch('validate')
-
-        return getFirebaseBackend().loginUser(email, password).then((response) => {
-            const user = response
-            commit('SET_CURRENT_USER', user)
-            return user
-        });
+    //Save the User in the state and local storage
+    saveUser(commit, {data}){
+        commit('SET_CURRENT_USER', data) 
     },
+
+    // Logs in the current user.
+    async logIn({ commit }, { email, password } = {}) {
+
+
+
+        const data = {
+            "email": email,
+            "password": password
+        }
+
+
+            return await adminSignIn(data).then((response) => {
+                if (response.data.isAuth) {
+                    commit('SET_CURRENT_USER', response.data)      
+                    return response.data
+                }
+                else {
+                    return response.data
+                }
+            });
+
+        },
+        
+        
+
+    
 
     // Logs out the current user.
     logOut({ commit }) {
         // eslint-disable-next-line no-unused-vars
-        commit('SET_CURRENT_USER', null)
-        return new Promise((resolve, reject) => {
-            // eslint-disable-next-line no-unused-vars
-            getFirebaseBackend().logout().then((response) => {
-                resolve(true);
-            }).catch((error) => {
-                reject(this._handleError(error));
-            })
-        });
-    },
+       
+        commit('DELETE_CURRENT_USER')
 
+    },
     // register the user
     register({ commit, dispatch, getters }, { email, password } = {}) {
         if (getters.loggedIn) return dispatch('validate')
@@ -82,12 +110,4 @@ export const actions = {
         commit('SET_CURRENT_USER', user)
         return user;
     },
-}
-
-// ===
-// Private helpers
-// ===
-
-function saveState(key, state) {
-    window.localStorage.setItem(key, JSON.stringify(state))
 }

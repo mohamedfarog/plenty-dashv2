@@ -4,9 +4,11 @@ import Layout from "../../layouts/main";
 import PageHeader from "@/components/page-header";
 import { getProductImageUrl } from "@/services/api/products";
 import { getDesignersCats } from "@/services/api/products";
+import { editProduct } from "@/services/api/products";
 import { getShops } from "@/services/api/products";
-import { addProduct } from "@/services/api/products";
+
 export default {
+  props: ["selectedProduct"],
   components: {
     Layout,
     PageHeader,
@@ -15,22 +17,26 @@ export default {
   },
   data() {
     return {
+      proElement: [],
+      showForm: false,
+      newColor: "",
       loading: false,
       loadingTime: 0,
       maxLoadingTime: 3,
       color: "#79c120",
-      title: "Add Product",
+      title: "Update Product",
       items: [
         {
           text: "Ecommerce",
         },
         {
-          text: "Add Product",
+          text: "Update Product",
           active: true,
         },
       ],
       productImages: [],
       tableData: [],
+      proImages: [],
       designersCats: [],
       shopsData: [],
       propertyImage: "",
@@ -45,7 +51,7 @@ export default {
               label: "Pick a color",
               placeholder: "Sample color placeholder",
               help: "Sample color help text",
-              validation: "required",
+
               value: "#3eaf7c",
               "error-behavior": "live",
               class: "col-lg-3",
@@ -55,21 +61,18 @@ export default {
               name: "size",
               label: "Size",
               class: "col-lg-3",
-              validation: "required",
             },
             {
               type: "number",
               name: "proprice",
               label: "Price",
               class: "col-lg-3",
-              validation: "required",
             },
             {
-              type: "number",
+              type: "text",
               name: "pquantity",
               label: "Quantity",
               class: "col-lg-3",
-              validation: "required",
             },
           ],
         },
@@ -81,10 +84,12 @@ export default {
         { key: "price", sortable: true },
         { key: "quantity", sortable: true },
         { key: "image", sortable: true },
+        { key: "edit", label: "Edit", class: "text-center" },
       ],
     };
   },
   mounted() {
+    this.getPassedProduct();
     this.getAllDesignersCats();
     this.getAllShops();
   },
@@ -100,14 +105,12 @@ export default {
               name: "name_en",
               label: "English Name",
               class: "col-sm-6 col-12",
-              validation: "required",
             },
             {
               type: "text",
               name: "name_ar",
               label: "Arabic Name",
               class: "col-sm-6 col-12",
-              validation: "required",
             },
           ],
         },
@@ -120,12 +123,10 @@ export default {
               name: "quantity",
               label: "Quantity",
               class: "col-lg-3",
-              validation: "required",
             },
             {
               type: "number",
               name: "price",
-              validation: "required",
               label: "Price",
               class: "col-lg-3",
             },
@@ -134,7 +135,6 @@ export default {
               name: "cat_id",
               label: "Category",
               class: "col-lg-3",
-              validation: "required",
               options: this.designersCats,
               placeholder: "Select Category",
             },
@@ -143,7 +143,6 @@ export default {
               name: "shop_id",
               label: "Shop",
               options: this.shopsData,
-              validation: "required",
               placeholder: "Select Shop",
               class: "col-lg-3",
             },
@@ -158,13 +157,11 @@ export default {
               name: "offerprice",
               label: "Offer Price",
               class: "col-lg-3",
-              validation: "required",
             },
 
             {
               type: "checkbox",
               name: "featured",
-              validation: "required",
               label: "Featured",
               class: "col-lg-3  pt-0",
             },
@@ -174,13 +171,11 @@ export default {
               name: "isservice",
               label: "Is service",
               class: "col-lg-3 pt-0",
-              validation: "required",
             },
             {
               type: "checkbox",
               name: "popular",
               label: "Popular",
-              validation: "required",
               class: "col-lg-3 pt-0",
             },
           ],
@@ -194,14 +189,12 @@ export default {
               name: "desc_en",
               label: "English Description",
               class: "col-sm-6 col-12",
-              validation: "required",
             },
             {
               type: "textarea",
               name: "desc_ar",
               label: "Arabic Description",
               class: "col-sm-6 col-12",
-              validation: "required",
             },
           ],
         },
@@ -209,6 +202,63 @@ export default {
     },
   },
   methods: {
+    async submitProductForm() {
+      var data = this.values;
+      console.log(this.values);
+      data.featured = this.values.featured ? 1 : 0;
+      data.popular = this.values.popular ? 1 : 0;
+      data.isservice = this.values.isservice ? 1 : 0;
+      data.offerprice = this.values.offerprice ? 1 : 0;
+      data.images = this.productImages;
+      data.product_properties = this.proElement;
+      console.log(this.proElement.price);
+      data.product_properties.price = this.proElement.proprice;
+      data.product_properties.quantity = this.proElement.pquantity;
+      data.product_properties.color = this.proElement.pickedColor;
+      data.product_properties["image"] = this.propertyImage;
+      console.log(data);
+      await editProduct(data).then((res) => {
+        console.log(res);
+        if (res.data.success == true) {
+          this.makeToast(true);
+          setTimeout(() => {
+            this.$router.push({ name: "products" });
+          }, 5000);
+        } else {
+          this.$bvToast.toast("404 NOT FOUND", {
+            title: "Error! While Updating the record",
+            variant: "danger",
+            solid: true,
+            toaster: "b-toaster-top-center",
+          });
+          setTimeout(() => {
+            this.$router.push({ name: "products" });
+          }, 5000);
+        }
+      });
+    },
+    editTableData() {
+      this.tableData.forEach((e) => {
+        console.log(e);
+        this.proElement = e;
+        this.proElement.pquantity = this.proElement.quantity;
+        this.proElement.proprice = this.proElement.price;
+        this.proElement.pickedColor = this.proElement.color;
+        this.proElement.image = this.proElement.property_images.image_path;
+      });
+
+      this.showForm = !this.showForm;
+    },
+    getPassedProduct() {
+      let passRecivedProduct = this.$route.params.selectedProduct;
+      this.values = passRecivedProduct;
+      console.log(this.values);
+      this.tableData = passRecivedProduct.properties;
+      this.values.product_images.forEach((img) => {
+        this.proImages.push(img);
+        console.log(img);
+      });
+    },
     getAllShops() {
       getShops()
         .then((res) => {
@@ -240,42 +290,11 @@ export default {
           console.log(err.response);
         });
     },
-    addProperties() {
-      this.tableData.push({
-        color: this.values.pickedColor,
-        size: this.values.size,
-        price: this.values.proprice,
-        quantity: this.values.pquantity,
-        image: this.propertyImage,
-      });
-    },
+
     tabChanged() {
       window.scrollTo(0, 0);
     },
-    validatProperties() {
-      if (this.$refs["proprty"].isValid == false) {
-        this.$bvToast.toast(`Please fill in all the required fields.`, {
-          variant: "danger",
-          title: "Invild Input ",
-          toaster: "b-toaster-top-center",
-          autoHideDelay: 10000,
-        });
-      } else {
-        return this.$refs["proprty"].isValid;
-      }
-    },
-    validateStep1() {
-      if (this.$refs["firstStep"].isValid == false) {
-        this.$bvToast.toast(`Please fill in all the required fields.`, {
-          variant: "danger",
-          title: "Invild Input ",
-          toaster: "b-toaster-top-center",
-          autoHideDelay: 10000,
-        });
-      } else {
-        return this.$refs["firstStep"].isValid;
-      }
-    },
+
     checkColor() {
       console.log(this.color);
     },
@@ -295,7 +314,7 @@ export default {
     onProductfilesSelected(event, progress, error, option) {
       this.getImageURL(event);
       return Promise.resolve({});
-      // this.getImageURL(event);
+      //this.getImageURL(event);
     },
     /* eslint-enable */
     async getImageURL(event) {
@@ -306,40 +325,9 @@ export default {
         console.log(this.productImages);
       });
     },
-    async submitProductForm() {
-      var data = this.values;
-      console.log(this.values);
-      data.featured = this.values.featured ? 1 : 0;
-      data.popular = this.values.popular ? 1 : 0;
-      data.isservice = this.values.isservice ? 1 : 0;
-      data.offerprice = this.values.offerprice ? 1 : 0;
-      data.images = this.productImages;
-      data.product_properties = this.tableData;
-      console.log(data);
-      addProduct(data).then((res) => {
-        console.log(res);
-        console.log("Product is Added");
-        if (res) {
-          this.makeToast(true);
-          setTimeout(() => {
-            this.$router.push({ name: "products" });
-          }, 5000);
-        } else {
-          this.$bvToast.toast("Product is not added", {
-            title: "Error! Adding a product",
-            variant: "danger",
-            solid: true,
-            toaster: "b-toaster-top-center",
-          });
-          setTimeout(() => {
-            this.$router.push({ name: "products" });
-          }, 5000);
-        }
-      });
-    },
     makeToast(append = false) {
-      this.$bvToast.toast(`New Product is Added`, {
-        title: "Add Product ",
+      this.$bvToast.toast(`Record is updated`, {
+        title: "Product update ",
         autoHideDelay: 10000,
         appendToast: append,
         variant: "success",
@@ -362,16 +350,29 @@ export default {
               finishButtonText="Submit"
               step-size="md"
             >
-              <tab-content
-                icon="fab fa-product-hunt"
-                :before-change="validateStep1"
-              >
+              <tab-content icon="fab fa-product-hunt">
                 <FormulateForm
                   ref="firstStep"
                   name="firstStep"
                   v-model="values"
                   :schema="step1"
                 />
+                <div class="row gutters">
+                  <div
+                    class="product-images col-xl-3"
+                    v-for="(pImage, index) in proImages"
+                    :key="index"
+                  >
+                    <!--dgeel-->
+                    <img
+                      :src="pImage.image_path"
+                      height="60"
+                      width="60"
+                      class="imageSrc"
+                    />
+                  </div>
+                </div>
+
                 <FormulateInput
                   type="image"
                   label="Select your documents to upload"
@@ -381,11 +382,7 @@ export default {
                   multiple
                 />
               </tab-content>
-              <tab-content
-                title="Properties"
-                icon="fa fa-check"
-                :before-change="validatProperties"
-              >
+              <tab-content title="Properties" icon="fa fa-check">
                 <div class="table-responsive mb-0">
                   <b-table :items="tableData" :fields="fields" responsive="sm">
                     <template #cell(color)="data">
@@ -397,30 +394,42 @@ export default {
                     <template #cell(image)="data">
                       <div>
                         <img
-                          :src="data.item.image"
-                          style="height: 50px; width: height: 50px "
+                          :src="data.item.property_images.image_path"
+                          style="height: 50px; width: height: 50px"
                         />
                       </div>
                     </template>
+                    <template #cell(edit)>
+                      <b-button variant="warning" @click="editTableData()"
+                        >Edit</b-button
+                      >
+                    </template>
                   </b-table>
                 </div>
-                <div class="proData">
+                <div class="proData" v-if="showForm">
                   <FormulateForm
-                    v-model="values"
+                    v-model="proElement"
                     :schema="properties"
                     ref="proprty"
                   />
-                  <b-button @click="addProperties()" variant="#5663d2;">
-                    Add Property
-                  </b-button>
                 </div>
-                <FormulateInput
-                  type="image"
-                  label="Select your documents to upload"
-                  help="Select one or more PDFs to upload"
-                  validation="mime:image/jpeg,image/png,image/gif"
-                  :uploader="onPropertyfileSelected"
-                />
+
+                <div class="proImagesFather" v-if="showForm">
+                  <img
+                    :src="proElement.image"
+                    height="60"
+                    width="60"
+                    class="proImageOutPut col-0"
+                  />
+                  <FormulateInput
+                    class="proImageInput col-sm-12"
+                    type="image"
+                    label="Select your documents to upload"
+                    help="Select one or more PDFs to upload"
+                    validation="mime:image/jpeg,image/png,image/gif"
+                    :uploader="onPropertyfileSelected"
+                  />
+                </div>
               </tab-content>
             </form-wizard>
           </div>
@@ -448,5 +457,22 @@ export default {
 }
 .table-responsive {
   height: 150px;
+}
+.gutters {
+  display: flex;
+}
+.product-images {
+  flex: 0;
+}
+.proImagesFather {
+  display: flex;
+}
+.proImageOutPut {
+  flex: 0;
+  margin-top: 35px;
+}
+.proImageInput {
+  flex: 1;
+  margin-left: 300;
 }
 </style>

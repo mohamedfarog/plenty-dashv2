@@ -115,10 +115,14 @@
     "calendar": {
       "text": "Calendar"
     },
+    "users": {
+      "text": "Users"
+    },
     "chat": {
       "text": "Chat",
       "badge": "New"
     },
+
     "ecommerce": {
       "text": "Ecommerce",
       "list": {
@@ -130,6 +134,12 @@
         "checkout": "Checkout",
         "shops": "Shops",
         "addproduct": "Add Product"
+      }
+    },
+    "designers": {
+      "text": "Designers",
+      "list": {
+        "designers": "View Designers"
       }
     },
     "email": {

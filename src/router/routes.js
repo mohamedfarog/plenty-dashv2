@@ -72,7 +72,7 @@ export default [
         },
     },
     {
-        path: '/',
+        path: '/login',
         name: 'home',
         meta: {
             authRequired: true,
@@ -96,11 +96,28 @@ export default [
         component: () => import('../views/pages/calendar/index')
     },
     {
+        path: '/users',
+        name: 'users',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/pages/users/index')
+    },
+    
+    {
+        path: '/designers/designers',
+        name: 'designer',
+        meta: { notRequiresAuth: true },
+        component: () => import('../views/pages/designers/designer.vue')
+    },
+
+    {
         path: '/ecommerce/products',
         name: 'products',
         meta: { authRequired: true },
         component: () => import('../views/pages/ecommerce/products')
     },
+
     {
         path: '/ecommerce/product-detail',
         name: 'product detail',
@@ -142,6 +159,12 @@ export default [
         name: 'Add-product',
         meta: { authRequired: true },
         component: () => import('../views/pages/ecommerce/add-product')
+    },
+    {
+        path: '/ecommerce/edit-product',
+        name: 'edit-product',
+        meta: { authRequired: true },
+        component: () => import('../views/pages/ecommerce/edit-product')
     },
     {
         path: '/email/inbox',

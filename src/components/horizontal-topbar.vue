@@ -78,6 +78,7 @@ export default {
         }
       }
     },
+
     toggleRightSidebar() {
       this.$parent.toggleRightSidebar();
     },
@@ -177,6 +178,7 @@ export default {
         </button>
 
         <!-- App Search-->
+
         <form class="app-search d-none d-lg-block">
           <div class="position-relative">
             <input
@@ -694,10 +696,7 @@ export default {
             <i class="ri-user-line align-middle mr-1"></i>
             {{ $t("navbar.dropdown.kevin.list.profile") }}
           </a>
-          <a class="dropdown-item" href="#">
-            <i class="ri-wallet-2-line align-middle mr-1"></i>
-            {{ $t("navbar.dropdown.kevin.list.mywallet") }}
-          </a>
+
           <a class="dropdown-item d-block" href="#">
             <span class="badge badge-success float-right mt-1">11</span>
             <i class="ri-settings-2-line align-middle mr-1"></i>
@@ -717,7 +716,14 @@ export default {
         <div class="dropdown d-inline-block">
           <button
             type="button"
-            class="btn header-item noti-icon right-bar-toggle waves-effect toggle-right"
+            class="
+              btn
+              header-item
+              noti-icon
+              right-bar-toggle
+              waves-effect
+              toggle-right
+            "
             @click="toggleRightSidebar"
           >
             <i class="ri-settings-2-line toggle-right"></i>
